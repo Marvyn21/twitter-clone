@@ -1,16 +1,17 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './components/Login';
 import Feed from './components/Feed';
 import './App.css';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path='/' component={Login} />
-        <Route path='/feed' component={Feed} />
-      </Switch>
-    </BrowserRouter>
+    <Router>
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/feed' element={<Feed />} />
+      </Routes>
+    </Router>
   );
 }
 

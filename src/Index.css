@@ -1,0 +1,35 @@
+.login-page {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+  }
+  
+  .login-page h1 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .login-page form {
+    margin-top: 20px;
+  }
+  
+  .login-page input {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .login-page button {
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+  }
+  

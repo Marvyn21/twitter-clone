@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const history = useHistory();
+    const history = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -12,7 +12,7 @@ function Login() {
     };
 
     return (
-        <div>
+        <div className="login-page" >
             <h1>Login</h1>
             <form onSubmit={handleLogin}>
                 <label>
