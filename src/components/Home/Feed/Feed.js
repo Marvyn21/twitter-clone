@@ -1,30 +1,43 @@
-import { useState, useEffect } from 'react';
-import Post from './Post';
-
+import { useEffect, useState } from 'react'
+import "./Feed.css"
+import {Post} from './Post'
+import TweetBox from './TweetBox'
+import { onSnapshot, collection, query, orderBy } from "@firebase/firestore";
+import { database } from "../../../firebase/firebaseconfig"
 function Feed() {
-  const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:3000/posts');
-        const data = await response.json();
-        setPosts(data.posts);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
+  const [tweets,setTweets] = useState([]);
+   useEffect(() => {
+    const unsubscribe = onSnapshot(
+      query(collection(database, "posts"), orderBy("timestamp","desc")),
+      (snapshot) => {
+        setTweets(snapshot.docs);
       }
-    };
+    );
 
-    fetchData();
-  }, []);
+    return () => {
+      unsubscribe();
+    };
+  }, [database]);
 
   return (
-    <div>
-      {posts && posts.map((post) => (
-        <Post key={post.id} post={post} />
-      ))}
+    <div className='feed'>
+
+        {/* Header */}
+        <div className='feed_header'>
+            <span>Home</span>
+        </div>
+
+        {/* tweet box */}
+        <TweetBox/>
+
+        {/* Posts  */}
+        {tweets.map((el,idx)=>{
+          return <Post key={el.id} id={el.id} post={el.data()}/>
+        })}
     </div>
-  );
+
+  )
 }
 
-export default Feed;
+export default Feed
